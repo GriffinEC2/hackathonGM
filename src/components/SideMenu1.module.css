@@ -1,0 +1,535 @@
+.glow,
+.outline {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  right: -0.6px;
+  bottom: -1px;
+  left: 0.5px;
+  border-radius: 10.48px;
+  display: none;
+}
+.glow {
+  background: conic-gradient(
+    from -51.16deg at 50% 50%,
+    rgba(159, 115, 241, 0) -48.92deg,
+    rgba(243, 98, 181, 0) 125.18deg,
+    rgba(95, 197, 255, 0.7) 193.41deg,
+    rgba(255, 172, 137, 0.7) 216.02deg,
+    rgba(129, 84, 255, 0.7) 236.07deg,
+    rgba(120, 158, 255, 0.7) 259.95deg,
+    rgba(159, 115, 241, 0) 311.08deg,
+    rgba(243, 98, 181, 0) 485.18deg
+  );
+  filter: blur(104.81px);
+  opacity: 0.6;
+  z-index: 0;
+}
+.outline {
+  border: 1px solid var(--color-gray-200);
+  box-sizing: border-box;
+  z-index: 1;
+}
+.account,
+.menuNineCircles {
+  position: relative;
+  overflow: hidden;
+}
+.menuNineCircles {
+  height: 16.8px;
+  width: 16.8px;
+  flex-shrink: 0;
+}
+.account {
+  align-self: stretch;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.accountSettings {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-11xs) 0 0;
+}
+.menuNineCircles1 {
+  height: 25.2px;
+  width: 25.2px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow1 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  bottom: 0.4px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu,
+.buttonMenuGroup,
+.subMenuFrame {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.buttonMenu {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.buttonMenuGroup,
+.subMenuFrame {
+  align-items: flex-start;
+  padding: 0;
+}
+.buttonMenuGroup {
+  width: 245px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.subMenuFrame {
+  flex: 1;
+  justify-content: flex-end;
+}
+.handPointFinger {
+  height: 16.8px;
+  width: 16.8px;
+  flex-shrink: 0;
+}
+.account1,
+.handPointFinger,
+.handPointFinger1 {
+  position: relative;
+  overflow: hidden;
+}
+.account1 {
+  flex: 1;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.handPointFinger1 {
+  height: 25.2px;
+  width: 25.2px;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow2 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: -0.2px;
+  bottom: 0.6px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu1,
+.buttonMenuWrapper,
+.subMenuFrame1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.buttonMenu1 {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.buttonMenuWrapper,
+.subMenuFrame1 {
+  align-items: flex-start;
+  padding: 0;
+}
+.buttonMenuWrapper {
+  width: 245px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.subMenuFrame1 {
+  flex: 1;
+  justify-content: flex-end;
+}
+.menuSquareIcon {
+  height: 16.8px;
+  width: 16.8px;
+  flex-shrink: 0;
+}
+.account2,
+.menuSquareIcon,
+.menuSquareIcon1 {
+  position: relative;
+  overflow: hidden;
+}
+.account2 {
+  flex: 1;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.menuSquareIcon1 {
+  height: 25.2px;
+  width: 25.2px;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow3 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: -0.5px;
+  bottom: 0.9px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu2,
+.buttonMenuContainer,
+.subMenuFrame2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.buttonMenu2 {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.buttonMenuContainer,
+.subMenuFrame2 {
+  align-items: flex-start;
+  padding: 0;
+}
+.buttonMenuContainer {
+  width: 245px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.subMenuFrame2 {
+  flex: 1;
+  justify-content: flex-end;
+}
+.patternLockIcon {
+  height: 16.8px;
+  width: 16.8px;
+  flex-shrink: 0;
+}
+.account3,
+.patternLockIcon,
+.patternLockIcon1 {
+  position: relative;
+  overflow: hidden;
+}
+.account3 {
+  flex: 1;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.patternLockIcon1 {
+  height: 25.2px;
+  width: 25.2px;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow4 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: 0.3px;
+  bottom: 0.1px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu3,
+.buttonMenuFrame,
+.subMenuFrame3 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.buttonMenu3 {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.buttonMenuFrame,
+.subMenuFrame3 {
+  align-items: flex-start;
+  padding: 0;
+}
+.buttonMenuFrame {
+  width: 245px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.subMenuFrame3 {
+  flex: 1;
+  justify-content: flex-end;
+}
+.account4,
+.creditCardDoubleLeft {
+  position: relative;
+  overflow: hidden;
+}
+.creditCardDoubleLeft {
+  height: 16.8px;
+  width: 16.8px;
+  flex-shrink: 0;
+}
+.account4 {
+  align-self: stretch;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.accountWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-11xs) 0 0;
+}
+.creditCardDoubleLeft1 {
+  height: 25.2px;
+  width: 25.2px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow5 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: 0;
+  bottom: 0.4px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu4,
+.frameDiv,
+.subMenuFrame4 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.buttonMenu4 {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.frameDiv,
+.subMenuFrame4 {
+  align-items: flex-start;
+  padding: 0;
+}
+.frameDiv {
+  width: 245px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.subMenuFrame4 {
+  flex: 1;
+  justify-content: flex-end;
+}
+.mediaCirclesPlayCircles {
+  height: 16.8px;
+  width: 16.8px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.account5 {
+  flex: 1;
+  position: relative;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.mediaCirclesPlayCircles1 {
+  height: 25.2px;
+  width: 25.2px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow6 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: -0.2px;
+  bottom: 0.6px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu5,
+.buttonMenuWrapper1,
+.subMenuFrame5 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.buttonMenu5 {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.buttonMenuWrapper1,
+.subMenuFrame5 {
+  align-items: flex-start;
+  padding: 0;
+}
+.buttonMenuWrapper1 {
+  width: 245px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.subMenuFrame5 {
+  flex: 1;
+  justify-content: flex-end;
+}
+.imageIcon {
+  height: 16.8px;
+  width: 16.8px;
+  flex-shrink: 0;
+}
+.account6,
+.imageIcon,
+.imageIcon1 {
+  position: relative;
+  overflow: hidden;
+}
+.account6 {
+  flex: 1;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.imageIcon1 {
+  height: 25.2px;
+  width: 25.2px;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow7 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: -0.5px;
+  bottom: 0.9px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu6,
+.buttonMenuWrapper2 {
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.buttonMenu6 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.buttonMenuWrapper2 {
+  margin-bottom: -1px;
+  width: 245px;
+  padding: 0;
+  box-sizing: border-box;
+}
+.buttonMenuWrapper2,
+.sideMenu,
+.subMenuFrame6 {
+  display: flex;
+  align-items: flex-start;
+}
+.subMenuFrame6 {
+  align-self: stretch;
+  height: 28px;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 0;
+  box-sizing: border-box;
+}
+.sideMenu {
+  margin: 0;
+  width: 100%;
+  flex: 1;
+  border-radius: 18.63px;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  gap: 22px 0;
+  min-width: 167.70370483398438px;
+  max-width: 335.40740966796875px;
+  text-align: left;
+  font-size: var(--font-size-mini-7);
+  color: var(--foreground-primary);
+  font-family: var(--font-inter);
+}

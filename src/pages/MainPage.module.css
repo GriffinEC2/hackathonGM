@@ -1,0 +1,120 @@
+.glowIcon {
+  height: 24.5px;
+  width: 25.2px;
+  position: absolute;
+  margin: 0 !important;
+  top: 9.4px;
+  left: 11px;
+  display: none;
+  z-index: 0;
+}
+.logoDesigncodeIcon {
+  height: 46.1px;
+  width: 46.1px;
+  position: relative;
+  border-radius: 31.44px;
+}
+.company {
+  width: 106.9px;
+  position: relative;
+  letter-spacing: -0.05em;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.logoFooter {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  gap: 0 5px;
+}
+.questionFrame,
+.rootFrame {
+  align-self: stretch;
+  align-items: flex-start;
+}
+.rootFrame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 var(--padding-12xs) 0 0;
+  gap: 42px 0;
+}
+.questionFrame {
+  height: 105px;
+  flex-direction: row;
+  padding: 0 4px 0 0;
+}
+.mainContentFrame,
+.mainPage,
+.questionFrame,
+.sidebar {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.sidebar {
+  height: 902px;
+  width: 281px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-right: 1px solid var(--container-divider);
+  flex-direction: column;
+  align-items: center;
+  padding: var(--padding-2xl) 16px 22px var(--padding-2xl);
+  gap: 326px 0;
+}
+.mainContentFrame,
+.mainPage {
+  align-items: flex-start;
+}
+.mainContentFrame {
+  flex: 1;
+  flex-direction: column;
+  padding: 31px 0 0;
+  max-width: calc(100% - 341px);
+}
+.mainPage {
+  width: 100%;
+  position: relative;
+  background: linear-gradient(112.9deg, #2a9db6, #bc55ed);
+  overflow: hidden;
+  flex-direction: row;
+  padding: 0 38px 0 0;
+  gap: 0 61px;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: 18.9px;
+  color: var(--foreground-primary);
+  font-family: var(--font-inter);
+}
+@media screen and (max-width: 800px) {
+  .sidebar {
+    display: none;
+    padding-top: var(--padding-xl);
+    padding-bottom: var(--padding-xl);
+    box-sizing: border-box;
+  }
+  .mainContentFrame {
+    max-width: 100%;
+  }
+  .mainPage {
+    padding-left: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 675px) {
+  .mainPage {
+    gap: 0 61px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .sidebar {
+    gap: 326px 0;
+  }
+  .mainPage {
+    gap: 0 61px;
+  }
+}

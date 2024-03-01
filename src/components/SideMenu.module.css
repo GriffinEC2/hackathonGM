@@ -1,0 +1,233 @@
+.glow {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0 !important;
+  top: -0.5px;
+  right: -0.1px;
+  bottom: -0.1px;
+  left: 0;
+  background: conic-gradient(
+    from -51.16deg at 50% 50%,
+    rgba(159, 115, 241, 0) -48.92deg,
+    rgba(243, 98, 181, 0) 125.18deg,
+    rgba(95, 197, 255, 0.7) 193.41deg,
+    rgba(255, 172, 137, 0.7) 216.02deg,
+    rgba(129, 84, 255, 0.7) 236.07deg,
+    rgba(120, 158, 255, 0.7) 259.95deg,
+    rgba(159, 115, 241, 0) 311.08deg,
+    rgba(243, 98, 181, 0) 485.18deg
+  );
+  filter: blur(104.81px);
+  display: none;
+  opacity: 0.6;
+  z-index: 0;
+}
+.glow,
+.line,
+.outline {
+  border-radius: 10.48px;
+}
+.outline {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0 !important;
+  top: -0.5px;
+  right: -0.1px;
+  bottom: -0.1px;
+  left: 0;
+  border: 1px solid var(--color-gray-200);
+  box-sizing: border-box;
+  display: none;
+  z-index: 1;
+}
+.line {
+  height: 1px;
+  flex: 1;
+  position: relative;
+  background-color: var(--container-divider);
+}
+.divider {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.dividerLine,
+.questionFrame {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0;
+}
+.dividerLine {
+  height: 2px;
+  width: 240px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.questionFrame {
+  align-self: stretch;
+  justify-content: flex-end;
+}
+.account,
+.settings2Icon {
+  position: relative;
+  overflow: hidden;
+}
+.settings2Icon {
+  height: 16.8px;
+  width: 16.8px;
+  flex-shrink: 0;
+}
+.account {
+  align-self: stretch;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.accountFrame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-11xs) 0 0;
+}
+.settings2Icon1 {
+  height: 25.2px;
+  width: 25.2px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow1 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: -0.1px;
+  bottom: 0.5px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu,
+.buttonMenus,
+.buttonMenusWrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.buttonMenu {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.buttonMenus,
+.buttonMenusWrapper {
+  align-items: flex-start;
+  padding: 0;
+}
+.buttonMenus {
+  width: 245px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.buttonMenusWrapper {
+  flex: 1;
+  justify-content: flex-end;
+}
+.helpIcon {
+  height: 16.8px;
+  width: 16.8px;
+  flex-shrink: 0;
+}
+.account1,
+.helpIcon,
+.helpIcon1 {
+  position: relative;
+  overflow: hidden;
+}
+.account1 {
+  flex: 1;
+  line-height: 20.96px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.helpIcon1 {
+  height: 25.2px;
+  width: 25.2px;
+  flex-shrink: 0;
+  display: none;
+  z-index: 2;
+}
+.glow2 {
+  height: calc(100% - 0.4px);
+  width: 3.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: -0.4px;
+  bottom: 0.8px;
+  left: -0.3px;
+  filter: blur(10.48px);
+}
+.buttonMenu1,
+.buttonMenuWrapper {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.buttonMenu1 {
+  align-self: stretch;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--padding-6xl) 0 0;
+  position: relative;
+  gap: 0 9px;
+}
+.buttonMenuWrapper {
+  width: 245px;
+  padding: 0;
+  box-sizing: border-box;
+}
+.buttonMenuWrapper,
+.sideMenu,
+.sideMenuInner {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+}
+.sideMenuInner {
+  height: 29px;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 0;
+  box-sizing: border-box;
+}
+.sideMenu {
+  flex: 1;
+  border-radius: 18.63px;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  gap: 22px 0;
+  min-width: 167.70370483398438px;
+  max-width: 335.40740966796875px;
+  text-align: left;
+  font-size: var(--font-size-mini-7);
+  color: var(--foreground-primary);
+  font-family: var(--font-inter);
+}
