@@ -273,9 +273,13 @@ def get_network(sizes, activations, normal_para_extract=False):
     return nn.Sequential(*layers)
 
 
+# sizes, activations, storage, lr, max_grad_norm, frames_per_batch, total_frams, sub_batch_size = 64, 
+#       num_epochs = 10, clip_epsilon = 0.2, gamma = 0.99, lmbda = 0.95, entropy_eps = 1e-4
 
+# network_size, activations, Storage, LR, max_grad_norm, frames_per_batch, total_frams, 
+#       gamma = 0.99, tau = 0.01, EPS_START=1, EPS_END=0.1, EPS_DECAY=100_000
 
-def PPO_train(sizes, activations, storage, lr=3e-4, max_grad_norm=1.0, frames_per_batch=1000, total_frams=100_000, sub_batch_size = 64, 
+def PPO_train(sizes, activations, storage, lr, max_grad_norm, frames_per_batch, total_frams, sub_batch_size = 64, 
         num_epochs = 10, clip_epsilon = 0.2, gamma = 0.99, lmbda = 0.95, entropy_eps = 1e-4):
     
     is_fork = multiprocessing.get_start_method() == "fork"
@@ -466,8 +470,8 @@ def PPO_train(sizes, activations, storage, lr=3e-4, max_grad_norm=1.0, frames_pe
     # plt.show()
 
 
-def DQN_train(network_size, activations, Storage, LR=3e-4, max_grad_norm=1.0, frames_per_batch=1000, total_frams=100_000, 
-        gamma = 0.99, tau = 0.01, EPS_START=1, EPS_END=0.1, EPS_DECAY=100_000):
+def DQN_train(network_size, activations, Storage, LR, max_grad_norm, frames_per_batch, total_frams, 
+            gamma = 0.99, tau = 0.01, EPS_START=1, EPS_END=0.1, EPS_DECAY=100_000):
     from graphs import plot_lines, plot_mov_avg_lines
 
 
@@ -489,6 +493,19 @@ def DQN_train(network_size, activations, Storage, LR=3e-4, max_grad_norm=1.0, fr
     loss = agent.train(env)
     
     return loss
+
+
+def organize(response):
+    if response[0] == 0:
+        PPO_train(response[1:])
+    elif response[0] == 1:
+        DQN_train(response[1:])
+
+    # response = [PPO or DQN (0 or 1), network_size, storage, lr, max_grad_norm, frames_per_batch, total_frames]
+
+    # it's going to be a list
+    # The first element will be 0 or 1 depending on ppo or dqn
+    # the second elemt will be a list of ints that decides the network size which you can just pass to DQN_train or PPO_train
 
 
 
