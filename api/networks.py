@@ -466,9 +466,8 @@ def PPO_train(sizes, activations, storage, lr=3e-4, max_grad_norm=1.0, frames_pe
     # plt.show()
 
 
-
-
-def DQN_train():
+def DQN_train(network_size, activations, Storage, LR=3e-4, max_grad_norm=1.0, frames_per_batch=1000, total_frams=100_000, 
+        gamma = 0.99, tau = 0.01, EPS_START=1, EPS_END=0.1, EPS_DECAY=100_000):
     from graphs import plot_lines, plot_mov_avg_lines
 
 
@@ -481,13 +480,12 @@ def DQN_train():
     n_observations = len(state)
     # set up matplotlib
 
-    network_size = [n_actions, 64, 64, 64, 64, n_observations]
 
     # Activation Functions: https://pytorch.org/docs/stable/nn.functional.html
 
     activations = [nn.Relu, nn.Relu, nn.Relu, nn.Relu, nn.Sigmoid]
-    agent = DQN(network_size, activations, batch_size=1000, mem_capacity=10_000, EPS_START=1, EPS_END=0.1, EPS_DECAY=100_000, LR=0.001, 
-                GAMMA=0.9, TAU=0.01, Storage="circular_buffer")
+    agent = DQN(network_size, activations, batch_size=frames_per_batch, mem_capacity=total_frams, EPS_START=EPS_START, EPS_END=EPS_END, 
+                EPS_DECAY=EPS_DECAY, LR=LR, GAMMA=gamma, TAU=tau, Storage=Storage)
     loss = agent.train(env)
     
     return loss
