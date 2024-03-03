@@ -8,6 +8,7 @@ import {
 import HomePage from "./pages/HomePage";
 import EnvPage from "./pages/EnvPage";
 import ParametersPge from "./pages/ParametersPge";
+import GraphPage from "./pages/GraphPage";
 
 function App() {
   const action = useNavigationType();
@@ -37,6 +38,10 @@ function App() {
         title = "";
         metaDescription = "";
         break;
+      case "/graph-page":
+        title="";
+        metaDescription="";
+        break;
     }
 
     if (title) {
@@ -58,6 +63,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/env-page" element={<EnvPage />} />
       <Route path="/parameters-pge" element={<ParametersPge />} />
+      <Route path="/graph-page" element={<GraphPage />} />
     </Routes>
   );
 }
