@@ -8,6 +8,20 @@ const Ghdhretxc = () => {
     navigate("/parameters-pge");
   }, [navigate]);
 
+
+  const [accuracy, setAccuracy] = useState(2)
+  const [inputValue, setInputValue] = useState("");
+
+  const submitToApi = (e) => {
+    // e.preventDefault();
+    
+    fetch(`http://127.0.0.1:5000/api?data=${inputValue}`)
+    .then(res => res.json())
+    .then(data => {
+      setAccuracy(data.accuracy);
+    })
+  }
+
   return (
     <div className={styles.ghdhretxc}>
       <div className={styles.mything}>

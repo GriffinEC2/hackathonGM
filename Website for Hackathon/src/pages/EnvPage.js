@@ -24,6 +24,8 @@ const EnvPage = () => {
     // Please sync "What can i do page" to the project
   }, []);
 
+  
+
   return (
     <div className={styles.envPage}>
       <main className={styles.pageFrame}>
