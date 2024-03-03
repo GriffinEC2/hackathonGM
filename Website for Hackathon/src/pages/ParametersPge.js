@@ -91,7 +91,7 @@ const ParametersPge = () => {
                   alt=""
                   src="/menu-square.svg"
                 />
-                <div className={styles.account}>Change Hyper-Parameters</div>
+                <div className={styles.account2}>Change Hyper-Parameters</div>
                 <img
                   className={styles.mediaCirclesPlayCircles1}
                   alt=""
@@ -272,10 +272,11 @@ const ParametersPge = () => {
         </div>
         <div className={styles.activationFunctions}>
           <div className={styles.frame} />
-          <div className={styles.typeInResponse4}>
-            <div className={styles.typeInResponseChild} />
-            <div className={styles.typeYourAnswer}>Type your value here</div>
-          </div>
+          <input
+            className={styles.typeInResponse}
+            placeholder="Type your value here"
+            type="text"
+          />
           <div className={styles.content2}>
             <div className={styles.title}>
               <div className={styles.parameter}>Activation Functions</div>
@@ -346,7 +347,7 @@ const ParametersPge = () => {
               </div>
             </div>
           </div>
-          <button className={styles.choice4}>
+          <button className={styles.choice}>
             <div className={styles.choiceChild} />
             <div className={styles.choice1}>DQN</div>
           </button>
