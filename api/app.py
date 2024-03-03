@@ -40,9 +40,19 @@ def predict():
                     storage = "deque_memory"
                 else:
                     storage = None
+            elif data[0] == 7:
+                if data[1] == 0:
+                    env = 'CartPole-v1'
+                elif data[1] == 1:
+                    env = "LunarLander-v2"
+                elif data[1] == 2:
+                    env = "ALE/Pacman-v5"
+                elif data[1] == 3:
+                    env = "Pusher-v4"
+
             
             
-            DQN_train(neurons_per_layer, activation_func, storage, LR, frames_per_batch, total_frames)
+            DQN_train(env, neurons_per_layer, activation_func, storage, LR, frames_per_batch, total_frames)
 
 
     
