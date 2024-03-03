@@ -1,6 +1,8 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ParametersPge.module.css";
+import { useState } from "react";
+
 
 const ParametersPge = () => {
   const navigate = useNavigate();
@@ -28,6 +30,20 @@ const ParametersPge = () => {
   const onFrameButtonClick = useCallback(() => {
     navigate("/graph-page");
   }, [navigate]);
+
+
+  const [accuracy, setAccuracy] = useState(2)
+  const [inputValue, setInputValue] = useState("");
+
+  const submitToApi = (e) => {
+    e.preventDefault();
+    
+    fetch(`http://127.0.0.1:5000/api?data=${inputValue}`)
+    .then(res => res.json())
+    .then(data => {
+      setAccuracy(data.accuracy);
+    })
+  }
 
   return (
     <div className={styles.parametersPge}>
@@ -162,11 +178,14 @@ const ParametersPge = () => {
         </div>
         <div className={styles.totalFrames}>
           <div className={styles.frame} />
-          <input
-            className={styles.typeInResponse}
-            placeholder="Type your value here"
-            type="text"
-          />
+          <form onSubmit={submitToApi}>
+            <input
+              className={styles.typeInResponse}
+              placeholder="Type your value here"
+              type="text"
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          </form>
           <div className={styles.content}>
             <div className={styles.title}>
               <div className={styles.parameter}>Frames Per Batch</div>
@@ -186,11 +205,14 @@ const ParametersPge = () => {
         </div>
         <div className={styles.framesPerBatch}>
           <div className={styles.frame} />
-          <input
-            className={styles.typeInResponse}
-            placeholder="Type your value here"
-            type="text"
-          />
+          <form onSubmit={submitToApi}>
+            <input
+              className={styles.typeInResponse}
+              placeholder="Type your value here"
+              type="text"
+              onChange={(e) => setInputValue([e.target.value]) }
+            />
+          </form>
           <div className={styles.content}>
             <div className={styles.title}>
               <div className={styles.parameter}>Total Frames</div>
@@ -209,11 +231,14 @@ const ParametersPge = () => {
         </div>
         <div className={styles.learningRate}>
           <div className={styles.frame} />
-          <input
-            className={styles.typeInResponse}
-            placeholder="Type your value here"
-            type="text"
-          />
+          <form onSubmit={submitToApi}>
+            <input
+              className={styles.typeInResponse}
+              placeholder="Type your value here"
+              type="text"
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          </form>
           <div className={styles.content2}>
             <div className={styles.title}>
               <div className={styles.parameter}>Learning Rate</div>
@@ -272,11 +297,14 @@ const ParametersPge = () => {
         </div>
         <div className={styles.activationFunctions}>
           <div className={styles.frame} />
-          <input
-            className={styles.typeInResponse}
-            placeholder="Type your value here"
-            type="text"
-          />
+          <form onSubmit={submitToApi}>
+            <input
+              className={styles.typeInResponse}
+              placeholder="Type your value here"
+              type="text"
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          </form>
           <div className={styles.content2}>
             <div className={styles.title}>
               <div className={styles.parameter}>Activation Functions</div>
@@ -305,11 +333,14 @@ const ParametersPge = () => {
         </div>
         <div className={styles.nueronsPerLayer}>
           <div className={styles.frame} />
-          <input
-            className={styles.typeInResponse}
-            placeholder="Type your value here"
-            type="text"
-          />
+          <form onSubmit={submitToApi}>
+            <input
+              className={styles.typeInResponse}
+              placeholder="Type your value here"
+              type="text"
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          </form>
           <div className={styles.content2}>
             <div className={styles.title}>
               <div className={styles.parameter}>Neurons Per Layer</div>
@@ -347,11 +378,17 @@ const ParametersPge = () => {
               </div>
             </div>
           </div>
-          <button className={styles.choice}>
+          <button className={styles.choice} onClick={(e) => {
+              setInputValue(1);
+              submitToApi(e);
+            }}>
             <div className={styles.choiceChild} />
             <div className={styles.choice1}>DQN</div>
           </button>
-          <button className={styles.choice2}>
+          <button className={styles.choice2} onClick={(e) => {
+              setInputValue([8,9]);
+              submitToApi(e);
+            }}>
             <div className={styles.choiceChild} />
             <div className={styles.choice1}>PPO</div>
           </button>

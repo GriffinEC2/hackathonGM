@@ -237,28 +237,6 @@ def train(self, env):
                 break
     return total_loss
 
-from tensordict.nn import TensorDictModule
-from tensordict.nn.distributions import NormalParamExtractor
-from torch import nn
-
-from torchrl.collectors import SyncDataCollector
-from torchrl.data.replay_buffers import ReplayBuffer
-from torchrl.data.replay_buffers.samplers import SamplerWithoutReplacement
-from torchrl.data.replay_buffers.storages import LazyTensorStorage
-from torchrl.envs import (
-    Compose,
-    DoubleToFloat,
-    ObservationNorm,
-    StepCounter,
-    TransformedEnv,
-)
-from torchrl.envs.libs.gym import GymEnv
-from torchrl.envs.utils import check_env_specs, ExplorationType, set_exploration_type
-from torchrl.modules import ProbabilisticActor, TanhNormal, ValueOperator
-from torchrl.objectives import ClipPPOLoss
-from torchrl.objectives.value import GAE
-from tqdm import tqdm
-
 
 def get_network(sizes, activations, normal_para_extract=False):
     layers = []
@@ -272,205 +250,278 @@ def get_network(sizes, activations, normal_para_extract=False):
 
     return nn.Sequential(*layers)
 
+# from tensordict.nn import TensorDictModule
+# from tensordict.nn.distributions import NormalParamExtractor
+# from torch import nn
 
-# sizes, activations, storage, lr, max_grad_norm, frames_per_batch, total_frams, sub_batch_size = 64, 
-#       num_epochs = 10, clip_epsilon = 0.2, gamma = 0.99, lmbda = 0.95, entropy_eps = 1e-4
+# from torchrl.collectors import SyncDataCollector
+# from torchrl.data.replay_buffers import ReplayBuffer
+# from torchrl.data.replay_buffers.samplers import SamplerWithoutReplacement
+# from torchrl.data.replay_buffers.storages import LazyTensorStorage
+# from torchrl.envs import (
+#     Compose,
+#     DoubleToFloat,
+#     ObservationNorm,
+#     StepCounter,
+#     TransformedEnv,
+# )
+# from torchrl.envs.libs.gym import GymEnv
+# from torchrl.envs.utils import check_env_specs, ExplorationType, set_exploration_type
+# from torchrl.modules import ProbabilisticActor, TanhNormal, ValueOperator
+# from torchrl.objectives import ClipPPOLoss
+# from torchrl.objectives.value import GAE
+# from tqdm import tqdm
 
-# network_size, activations, Storage, LR, max_grad_norm, frames_per_batch, total_frams, 
-#       gamma = 0.99, tau = 0.01, EPS_START=1, EPS_END=0.1, EPS_DECAY=100_000
 
-def PPO_train(sizes, activations, storage, lr, max_grad_norm, frames_per_batch, total_frams, sub_batch_size = 64, 
-        num_epochs = 10, clip_epsilon = 0.2, gamma = 0.99, lmbda = 0.95, entropy_eps = 1e-4):
+# # sizes, activations, storage, lr, max_grad_norm, frames_per_batch, total_frams, sub_batch_size = 64, 
+# #       num_epochs = 10, clip_epsilon = 0.2, gamma = 0.99, lmbda = 0.95, entropy_eps = 1e-4
+
+# # network_size, activations, Storage, LR, max_grad_norm, frames_per_batch, total_frams, 
+# #       gamma = 0.99, tau = 0.01, EPS_START=1, EPS_END=0.1, EPS_DECAY=100_000
+
+# def PPO_train(sizes, activations, storage, lr, max_grad_norm, frames_per_batch, total_frams, sub_batch_size = 64, 
+#         num_epochs = 10, clip_epsilon = 0.2, gamma = 0.99, lmbda = 0.95, entropy_eps = 1e-4):
     
-    is_fork = multiprocessing.get_start_method() == "fork"
-    device = (
-        torch.device(0)
-        if torch.cuda.is_available() and not is_fork
-        else torch.device("cpu")
-    )
+#     is_fork = multiprocessing.get_start_method() == "fork"
+#     device = (
+#         torch.device(0)
+#         if torch.cuda.is_available() and not is_fork
+#         else torch.device("cpu")
+#     )
 
 
     
     
-    base_env = GymEnv("InvertedDoublePendulum-v4", device=device)
+#     base_env = GymEnv("InvertedDoublePendulum-v4", device=device)
 
 
-    env = TransformedEnv(
-    base_env,
-    Compose(
-        # normalize observations
-        ObservationNorm(in_keys=["observation"]),
-        DoubleToFloat(),
-        StepCounter(),
-    ),
-    )
-    env.transform[0].init_stats(num_iter=1000, reduce_dim=0, cat_dim=0)
-    check_env_specs(env)
+#     env = TransformedEnv(
+#     base_env,
+#     Compose(
+#         # normalize observations
+#         ObservationNorm(in_keys=["observation"]),
+#         DoubleToFloat(),
+#         StepCounter(),
+#     ),
+#     )
+#     env.transform[0].init_stats(num_iter=1000, reduce_dim=0, cat_dim=0)
+#     check_env_specs(env)
 
-    rollout = env.rollout(3)
-    print("rollout of three steps:", rollout)
-    print("Shape of the rollout TensorDict:", rollout.batch_size)
+#     rollout = env.rollout(3)
+#     print("rollout of three steps:", rollout)
+#     print("Shape of the rollout TensorDict:", rollout.batch_size)
 
-    actor_net = get_network(sizes, activations, normal_para_extract=True)
+#     actor_net = get_network(sizes, activations, normal_para_extract=True)
 
-    policy_module = TensorDictModule(
-    actor_net, in_keys=["observation"], out_keys=["loc", "scale"]
-    )
+#     policy_module = TensorDictModule(
+#     actor_net, in_keys=["observation"], out_keys=["loc", "scale"]
+#     )
 
-    policy_module = ProbabilisticActor(
-    module=policy_module,
-    spec=env.action_spec,
-    in_keys=["loc", "scale"],
-    distribution_class=TanhNormal,
-    distribution_kwargs={
-        "min": env.action_spec.space.low,
-        "max": env.action_spec.space.high,
-    },
-    return_log_prob=True,
-    # we'll need the log-prob for the numerator of the importance weights
-    )
+#     policy_module = ProbabilisticActor(
+#     module=policy_module,
+#     spec=env.action_spec,
+#     in_keys=["loc", "scale"],
+#     distribution_class=TanhNormal,
+#     distribution_kwargs={
+#         "min": env.action_spec.space.low,
+#         "max": env.action_spec.space.high,
+#     },
+#     return_log_prob=True,
+#     # we'll need the log-prob for the numerator of the importance weights
+#     )
 
-    activations.append(1)
-    value_net = get_network(sizes, activations, normal_para_extract=True)
+#     activations.append(1)
+#     value_net = get_network(sizes, activations, normal_para_extract=True)
 
-    value_module = ValueOperator(
-        module=value_net,
-        in_keys=["observation"],
-    )
+#     value_module = ValueOperator(
+#         module=value_net,
+#         in_keys=["observation"],
+#     )
 
-    print("Running policy:", policy_module(env.reset()))
-    print("Running value:", value_module(env.reset()))
+#     print("Running policy:", policy_module(env.reset()))
+#     print("Running value:", value_module(env.reset()))
 
-    collector = SyncDataCollector(
-        env,
-        policy_module,
-        frames_per_batch=frames_per_batch,
-        total_frames=total_frames,
-        split_trajs=False,
-        device=device,
-    )
-    if storage == "circular_buffer":
-        replay_buffer = ReplayBuffer(
-            storage=CircularBuffer(frames_per_batch),
-            sampler=SamplerWithoutReplacement
-        )
-    elif storage == "deque_memory":
-        replay_buffer = ReplayBuffer(
-            storage=DequeMemory(frames_per_batch),
-            sampler=SamplerWithoutReplacement
-        )
-    else: 
-        replay_buffer = ReplayBuffer(
-            storage=LazyTensorStorage(max_size=frames_per_batch),
-            sampler=SamplerWithoutReplacement(),
-        )
-
-
-    advantage_module = GAE(
-    gamma=gamma, lmbda=lmbda, value_network=value_module, average_gae=True
-    )
-
-    loss_module = ClipPPOLoss(
-        actor_network=policy_module,
-        critic_network=value_module,
-        clip_epsilon=clip_epsilon,
-        entropy_bonus=bool(entropy_eps),
-        entropy_coef=entropy_eps,
-        # these keys match by default but we set this for completeness
-        critic_coef=1.0,
-        loss_critic_type="smooth_l1",
-    )
-
-    optim = torch.optim.Adam(loss_module.parameters(), lr)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optim, total_frames // frames_per_batch, 0.0
-    )
-
-    logs = defaultdict(list)
-    pbar = tqdm(total=total_frames)
-    eval_str = ""
-
-    # We iterate over the collector until it reaches the total number of frames it was
-    # designed to collect:
-    for i, tensordict_data in enumerate(collector):
-        # we now have a batch of data to work with. Let's learn something from it.
-        for _ in range(num_epochs):
-            # We'll need an "advantage" signal to make PPO work.
-            # We re-compute it at each epoch as its value depends on the value
-            # network which is updated in the inner loop.
-            advantage_module(tensordict_data)
-            data_view = tensordict_data.reshape(-1)
-            replay_buffer.extend(data_view.cpu())
-            for _ in range(frames_per_batch // sub_batch_size):
-                subdata = replay_buffer.sample(sub_batch_size)
-                loss_vals = loss_module(subdata.to(device))
-                loss_value = (
-                    loss_vals["loss_objective"]
-                    + loss_vals["loss_critic"]
-                    + loss_vals["loss_entropy"]
-                )
-
-                # Optimization: backward, grad clipping and optimization step
-                loss_value.backward()
-                # this is not strictly mandatory but it's good practice to keep
-                # your gradient norm bounded
-                torch.nn.utils.clip_grad_norm_(loss_module.parameters(), max_grad_norm)
-                optim.step()
-                optim.zero_grad()
-
-        logs["reward"].append(tensordict_data["next", "reward"].mean().item())
-        pbar.update(tensordict_data.numel())
-        cum_reward_str = (
-            f"average reward={logs['reward'][-1]: 4.4f} (init={logs['reward'][0]: 4.4f})"
-        )
-        logs["step_count"].append(tensordict_data["step_count"].max().item())
-        stepcount_str = f"step count (max): {logs['step_count'][-1]}"
-        logs["lr"].append(optim.param_groups[0]["lr"])
-        lr_str = f"lr policy: {logs['lr'][-1]: 4.4f}"
-        if i % 10 == 0:
-            # We evaluate the policy once every 10 batches of data.
-            # Evaluation is rather simple: execute the policy without exploration
-            # (take the expected value of the action distribution) for a given
-            # number of steps (1000, which is our ``env`` horizon).
-            # The ``rollout`` method of the ``env`` can take a policy as argument:
-            # it will then execute this policy at each step.
-            with set_exploration_type(ExplorationType.MEAN), torch.no_grad():
-                # execute a rollout with the trained policy
-                eval_rollout = env.rollout(1000, policy_module)
-                logs["eval reward"].append(eval_rollout["next", "reward"].mean().item())
-                logs["eval reward (sum)"].append(
-                    eval_rollout["next", "reward"].sum().item()
-                )
-                logs["eval step_count"].append(eval_rollout["step_count"].max().item())
-                eval_str = (
-                    f"eval cumulative reward: {logs['eval reward (sum)'][-1]: 4.4f} "
-                    f"(init: {logs['eval reward (sum)'][0]: 4.4f}), "
-                    f"eval step-count: {logs['eval step_count'][-1]}"
-                )
-                del eval_rollout
-        pbar.set_description(", ".join([eval_str, cum_reward_str, stepcount_str, lr_str]))
-
-        # We're also using a learning rate scheduler. Like the gradient clipping,
-        # this is a nice-to-have but nothing necessary for PPO to work.
-        scheduler.step()
-
-    # plt.figure(figsize=(10, 10))
-    # plt.subplot(2, 2, 1)
-    # plt.plot(logs["reward"])
-    # plt.title("training rewards (average)")
-    # plt.subplot(2, 2, 2)
-    # plt.plot(logs["step_count"])
-    # plt.title("Max step count (training)")
-    # plt.subplot(2, 2, 3)
-    # plt.plot(logs["eval reward (sum)"])
-    # plt.title("Return (test)")
-    # plt.subplot(2, 2, 4)
-    # plt.plot(logs["eval step_count"])
-    # plt.title("Max step count (test)")
-    # plt.show()
+#     collector = SyncDataCollector(
+#         env,
+#         policy_module,
+#         frames_per_batch=frames_per_batch,
+#         total_frames=total_frames,
+#         split_trajs=False,
+#         device=device,
+#     )
+#     if storage == "circular_buffer":
+#         replay_buffer = ReplayBuffer(
+#             storage=CircularBuffer(frames_per_batch),
+#             sampler=SamplerWithoutReplacement
+#         )
+#     elif storage == "deque_memory":
+#         replay_buffer = ReplayBuffer(
+#             storage=DequeMemory(frames_per_batch),
+#             sampler=SamplerWithoutReplacement
+#         )
+#     else: 
+#         replay_buffer = ReplayBuffer(
+#             storage=LazyTensorStorage(max_size=frames_per_batch),
+#             sampler=SamplerWithoutReplacement(),
+#         )
 
 
-def DQN_train(network_size, activations, Storage, LR, max_grad_norm, frames_per_batch, total_frams, 
+#     advantage_module = GAE(
+#     gamma=gamma, lmbda=lmbda, value_network=value_module, average_gae=True
+#     )
+
+#     loss_module = ClipPPOLoss(
+#         actor_network=policy_module,
+#         critic_network=value_module,
+#         clip_epsilon=clip_epsilon,
+#         entropy_bonus=bool(entropy_eps),
+#         entropy_coef=entropy_eps,
+#         # these keys match by default but we set this for completeness
+#         critic_coef=1.0,
+#         loss_critic_type="smooth_l1",
+#     )
+
+#     optim = torch.optim.Adam(loss_module.parameters(), lr)
+#     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+#         optim, total_frames // frames_per_batch, 0.0
+#     )
+
+#     logs = defaultdict(list)
+#     pbar = tqdm(total=total_frames)
+#     eval_str = ""
+
+#     # We iterate over the collector until it reaches the total number of frames it was
+#     # designed to collect:
+#     for i, tensordict_data in enumerate(collector):
+#         # we now have a batch of data to work with. Let's learn something from it.
+#         for _ in range(num_epochs):
+#             # We'll need an "advantage" signal to make PPO work.
+#             # We re-compute it at each epoch as its value depends on the value
+#             # network which is updated in the inner loop.
+#             advantage_module(tensordict_data)
+#             data_view = tensordict_data.reshape(-1)
+#             replay_buffer.extend(data_view.cpu())
+#             for _ in range(frames_per_batch // sub_batch_size):
+#                 subdata = replay_buffer.sample(sub_batch_size)
+#                 loss_vals = loss_module(subdata.to(device))
+#                 loss_value = (
+#                     loss_vals["loss_objective"]
+#                     + loss_vals["loss_critic"]
+#                     + loss_vals["loss_entropy"]
+#                 )
+
+#                 # Optimization: backward, grad clipping and optimization step
+#                 loss_value.backward()
+#                 # this is not strictly mandatory but it's good practice to keep
+#                 # your gradient norm bounded
+#                 torch.nn.utils.clip_grad_norm_(loss_module.parameters(), max_grad_norm)
+#                 optim.step()
+#                 optim.zero_grad()
+
+#         logs["reward"].append(tensordict_data["next", "reward"].mean().item())
+#         pbar.update(tensordict_data.numel())
+#         cum_reward_str = (
+#             f"average reward={logs['reward'][-1]: 4.4f} (init={logs['reward'][0]: 4.4f})"
+#         )
+#         logs["step_count"].append(tensordict_data["step_count"].max().item())
+#         stepcount_str = f"step count (max): {logs['step_count'][-1]}"
+#         logs["lr"].append(optim.param_groups[0]["lr"])
+#         lr_str = f"lr policy: {logs['lr'][-1]: 4.4f}"
+#         if i % 10 == 0:
+#             # We evaluate the policy once every 10 batches of data.
+#             # Evaluation is rather simple: execute the policy without exploration
+#             # (take the expected value of the action distribution) for a given
+#             # number of steps (1000, which is our ``env`` horizon).
+#             # The ``rollout`` method of the ``env`` can take a policy as argument:
+#             # it will then execute this policy at each step.
+#             with set_exploration_type(ExplorationType.MEAN), torch.no_grad():
+#                 # execute a rollout with the trained policy
+#                 eval_rollout = env.rollout(1000, policy_module)
+#                 logs["eval reward"].append(eval_rollout["next", "reward"].mean().item())
+#                 logs["eval reward (sum)"].append(
+#                     eval_rollout["next", "reward"].sum().item()
+#                 )
+#                 logs["eval step_count"].append(eval_rollout["step_count"].max().item())
+#                 eval_str = (
+#                     f"eval cumulative reward: {logs['eval reward (sum)'][-1]: 4.4f} "
+#                     f"(init: {logs['eval reward (sum)'][0]: 4.4f}), "
+#                     f"eval step-count: {logs['eval step_count'][-1]}"
+#                 )
+#                 del eval_rollout
+#         pbar.set_description(", ".join([eval_str, cum_reward_str, stepcount_str, lr_str]))
+
+#         # We're also using a learning rate scheduler. Like the gradient clipping,
+#         # this is a nice-to-have but nothing necessary for PPO to work.
+#         scheduler.step()
+
+#     # plt.figure(figsize=(10, 10))
+#     # plt.subplot(2, 2, 1)
+#     # plt.plot(logs["reward"])
+#     # plt.title("training rewards (average)")
+#     # plt.subplot(2, 2, 2)
+#     # plt.plot(logs["step_count"])
+#     # plt.title("Max step count (training)")
+#     # plt.subplot(2, 2, 3)
+#     # plt.plot(logs["eval reward (sum)"])
+#     # plt.title("Return (test)")
+#     # plt.subplot(2, 2, 4)
+#     # plt.plot(logs["eval step_count"])
+#     # plt.title("Max step count (test)")
+#     # plt.show()
+
+
+class PPO:
+    def __init__(self, network_size, activations, storage, lr, gamma, ppo_epochs, eps):
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+        self.actor = FeedForwardNN().to(self.device)
+        self.critic = FeedForwardNN(state_dim).to(self.device)
+
+        self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=lr)
+        self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=lr)
+
+        self.gamma = gamma
+        self.ppo_epochs = ppo_epochs
+        self.eps = eps
+
+    def act(self, state):
+        state = torch.tensor(state).float().to(self.device)
+        probs = self.actor(state)
+        action = torch.distributions.Categorical(probs).sample().item()
+        return action
+
+    def learn(self, experiences):
+        states, actions, rewards, next_states, dones = zip(*experiences)
+        states = torch.tensor(states).float().to(self.device)
+        actions = torch.tensor(actions).to(self.device)
+        rewards = torch.tensor(rewards).float().to(self.device)
+        next_states = torch.tensor(next_states).float().to(self.device)
+        dones = torch.tensor(dones).float().to(self.device)
+
+        # Calculate returns and advantages
+        R = 0
+        returns = []
+        advantages = []
+        for r, _ in reversed(experiences):
+            R = r + self.gamma * R
+            returns.insert(0, R)
+        returns = torch.tensor(returns, dtype=torch.float32).to(self.device)
+        for (s, a, r, n_s, d) in experiences:
+            v = self.critic(torch.tensor(s).float().to(self.device))
+            A = r + self.gamma * self.critic(torch.tensor(n_s).float().to(self.device)) - v.detach()
+            advantages.append(A)
+        advantages = torch.tensor(advantages, dtype=torch.float32).to(self.device)
+
+        # PPO Updates (actor and critic)
+        for _ in range(self.ppo_epochs):
+            # Actor update
+            actor_probs = self.actor(states)
+            ratios = torch.exp(actor_probs - torch.gather(actor_probs, 1, actions.unsqueeze(1)).squeeze(1))
+            clipped_ratios = torch.clamp(ratios, 1 - self.eps, 1 + self.eps)
+            actor_loss = -torch.min(ratios * advantages, clipped_ratios * advantages).mean()
+
+
+def DQN_train(network_size, activations, Storage, LR, frames_per_batch, total_frams, 
             gamma = 0.99, tau = 0.01, EPS_START=1, EPS_END=0.1, EPS_DECAY=100_000):
     from graphs import plot_lines, plot_mov_avg_lines
 
