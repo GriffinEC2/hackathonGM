@@ -469,9 +469,54 @@ def get_network(sizes, activations, normal_para_extract=False):
 #     # plt.title("Max step count (test)")
 #     # plt.show()
 
+def PPO_train(env, sizes, activations, storage, lr, frames_per_batch, total_frames):
+    epochs = total_frames // frames_per_batch
+    agent = PPO(sizes, activations, storage, lr, gamma, epochs, eps=0.2)
+    for i in epochs:
+        if torch.cuda.is_available():
+            num_episodes = 600
+        else:
+            num_episodes = 50
+        total_loss = []
+        for i_episode in range(num_episodes):
+            # Initialize the environment and get its state
+            state, info = self.env.reset()
+            state = torch.tensor(state, dtype=torch.float32, device=device).unsqueeze(0)
+            for t in count():
+                action = self.select_action(state)
+                observation, reward, terminated, truncated, _ = env.step(action.item())
+                reward = torch.tensor([reward], device=device)
+                done = terminated or truncated
+
+                if terminated:
+                    next_state = None
+                else:
+                    next_state = torch.tensor(observation, dtype=torch.float32, device=device).unsqueeze(0)
+
+                # Store the transition in memory
+                self.memory.push(state, action, next_state, reward)
+
+                # Move to the next state
+                state = next_state
+
+                # Perform one step of the optimization (on the policy network)
+                loss = self.optimize_model()
+                total_loss.append(loss)
+
+                # Soft update of the target network's weights
+                # θ′ ← τ θ + (1 −τ )θ′
+                target_net_state_dict = self.target_net.state_dict()
+                policy_net_state_dict = self.policy_net.state_dict()
+                for key in policy_net_state_dict:
+                    target_net_state_dict[key] = policy_net_state_dict[key]*self.TAU + target_net_state_dict[key]*(1-self.TAU)
+                self.target_net.load_state_dict(target_net_state_dict)
+
+                if done:
+                    break
+        
 
 class PPO:
-    def __init__(self, network_size, activations, storage, lr, gamma, ppo_epochs, eps):
+    def __init__(self, network_size, activations, lr, gamma, ppo_epochs, eps):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         self.actor = FeedForwardNN().to(self.device)
