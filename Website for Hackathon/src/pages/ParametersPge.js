@@ -1,221 +1,352 @@
 import { useCallback } from "react";
-import PageComponentDONOTEDIT from "../components/PageComponentDONOTEDIT";
-import ParameterBox3 from "../components/ParameterBox3";
-import ParameterBox2 from "../components/ParameterBox2";
-import ParameterBox1 from "../components/ParameterBox1";
-import ParameterBox from "../components/ParameterBox";
+import { useNavigate } from "react-router-dom";
 import styles from "./ParametersPge.module.css";
 
 const ParametersPge = () => {
+  const navigate = useNavigate();
+
   const onLogoFooterContainerClick = useCallback(() => {
-    // Please sync "Home Page 1" to the project
-  }, []);
-
-  const onButtonMenuContainerClick = useCallback(() => {
-    // Please sync "Home Page 1" to the project
-  }, []);
-
-  const onButtonMenuContainer1Click = useCallback(() => {
-    // Please sync "Carbon Footprint Calculator Page" to the project
-  }, []);
+    navigate("/");
+  }, [navigate]);
 
   const onButtonMenuClick = useCallback(() => {
-    // Please sync "Learn" to the project
-  }, []);
+    navigate("/");
+  }, [navigate]);
 
-  const onButtonMenuContainer2Click = useCallback(() => {
-    // Please sync "What can i do page" to the project
-  }, []);
+  const onButtonMenu1Click = useCallback(() => {
+    navigate("/carbon-footprint-calculator-page");
+  }, [navigate]);
+
+  const onButtonMenu2Click = useCallback(() => {
+    navigate("/learn");
+  }, [navigate]);
+
+  const onButtonMenu3Click = useCallback(() => {
+    navigate("/what-can-i-do-page");
+  }, [navigate]);
+
+  const onFrameButtonClick = useCallback(() => {
+    navigate("/graph-page");
+  }, [navigate]);
 
   return (
     <div className={styles.parametersPge}>
-      <main className={styles.paramPageFrame}>
-        <PageComponentDONOTEDIT
-          mediaCirclesPlayCircles="/media-circles-play-circles.svg"
-          mediaCirclesPlayCircles1="/media-circles-play-circles.svg"
-          handPointFinger="/hand-point-finger.svg"
-          handPointFinger1="/hand-point-finger.svg"
-          menuSquare="/menu-square.svg"
-          menuSquare1="/menu-square.svg"
-          image="/image.svg"
-          image1="/image.svg"
-          menuNineCircles="/menu-nine-circles.svg"
-          menuNineCircles1="/menu-nine-circles.svg"
-          patternLock="/pattern-lock.svg"
-          patternLock1="/pattern-lock.svg"
-          creditCardDoubleLeft="/credit-card-double-left.svg"
-          creditCardDoubleLeft1="/credit-card-double-left.svg"
-          settings2="/settings-2.svg"
-          settings21="/settings-2.svg"
-          help="/help.svg"
-          help1="/help.svg"
-          pageComponentDONOTEDITDisplay="flex"
-          pageComponentDONOTEDITFlexDirection="row"
-          pageComponentDONOTEDITPadding="0px 0px 1921px"
-          pageComponentDONOTEDITAlignSelf="stretch"
-          pageComponentDONOTEDITFlex="1"
-          pageComponentDONOTEDITWidth="unset"
-          pageComponentDONOTEDITPosition="unset"
-          pageComponentDONOTEDITHeight="unset"
-          sidebarPosition="unset"
-          sidebarTop="unset"
-          sidebarLeft="unset"
-          sidebarHeight="unset"
-          sidebarPadding="var(--padding-2xl) var(--padding-xl) var(--padding-3xl)"
-          sidebarAlignSelf="stretch"
-          sidebarGap="330px 0px"
-          frameDivFlex="1"
-          frameDivPadding="0px 1px 0px 0px"
-          logoFooterWidth="unset"
-          logoFooterAlignSelf="stretch"
-          logoFooterPadding="0px 2px 0px 0px"
-          glowIconOverflow="unset"
-          appBlocksIconLeft="calc(50% - 12.5px)"
-          sideMenuMargin="0"
-          sideMenuFlex="1"
-          sideMenuPadding="0px 0px 0px"
-          glowWidth="100%"
-          glowHeight="100%"
-          outlineWidth="100%"
-          outlineHeight="100%"
-          buttonMenuBorder="unset"
-          buttonMenuPadding="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor="unset"
-          buttonMenuMarginLeft="unset"
-          buttonMenuFlex="1"
-          buttonMenuWidth="unset"
-          buttonMenuAlignSelf="stretch"
-          buttonMenuBackground="unset"
-          buttonMenuBorderLeft="unset"
-          glowHeight1="100%"
-          glowFilter="blur(10.48px)"
-          glowBackgroundColor="unset"
-          buttonMenuBorder1="unset"
-          buttonMenuPadding1="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor1="unset"
-          buttonMenuMarginLeft1="unset"
-          buttonMenuFlex1="1"
-          buttonMenuBackground1="unset"
-          buttonMenuBorderLeft1="unset"
-          buttonMenuWidth1="unset"
-          buttonMenuAlignSelf1="stretch"
-          handPointFingerWidth="var(--button-icon-size)"
-          handPointFingerHeight="var(--button-icon-size)"
-          glowHeight2="100%"
-          glowFilter1="blur(10.48px)"
-          glowBackgroundColor1="unset"
-          buttonMenuBorder2="none"
-          buttonMenuPadding2="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor2="transparent"
-          buttonMenuMarginLeft2="unset"
-          buttonMenuFlex2="1"
-          buttonMenuWidth2="unset"
-          buttonMenuAlignSelf2="stretch"
-          buttonMenuBackground2="linear-gradient(90deg, rgba(38, 112, 233, 0.3), rgba(38, 112, 233, 0))"
-          buttonMenuBorderLeft2="1px solid var(--color-royalblue)"
-          menuSquareIconWidth="16px"
-          menuSquareIconHeight="16px"
-          glowHeight3="100%"
-          glowFilter2="blur(10px)"
-          glowBackgroundColor2="#2670e9"
-          buttonMenuBorder3="unset"
-          buttonMenuPadding3="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor3="unset"
-          buttonMenuMarginLeft3="unset"
-          buttonMenuFlex3="1"
-          buttonMenuWidth3="unset"
-          buttonMenuAlignSelf3="stretch"
-          glowHeight4="100%"
-          buttonMenuBorder4="unset"
-          buttonMenuPadding4="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor4="unset"
-          buttonMenuMarginLeft4="unset"
-          buttonMenuFlex4="1"
-          buttonMenuWidth4="unset"
-          buttonMenuAlignSelf4="stretch"
-          glowHeight5="100%"
-          buttonMenuBorder5="unset"
-          buttonMenuPadding5="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor5="unset"
-          buttonMenuMarginLeft5="unset"
-          buttonMenuFlex5="1"
-          buttonMenuWidth5="unset"
-          buttonMenuAlignSelf5="stretch"
-          glowHeight6="100%"
-          buttonMenuBorder6="unset"
-          buttonMenuPadding6="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor6="unset"
-          buttonMenuMarginLeft6="unset"
-          buttonMenuMarginRight="unset"
-          buttonMenuMarginBottom="-1px"
-          buttonMenuFlex6="1"
-          buttonMenuWidth6="unset"
-          buttonMenuAlignSelf6="stretch"
-          glowHeight7="100%"
-          sideMenuHeight="104px"
-          sideMenuPadding1="0px 0px 0px"
-          glowWidth1="100%"
-          glowHeight8="100%"
-          outlineWidth1="100%"
-          outlineHeight1="100%"
-          dividerWidth="unset"
-          dividerPosition="unset"
-          dividerHeight="unset"
-          dividerAlignSelf="stretch"
-          dividerDisplay="flex"
-          dividerFlexDirection="row"
-          linePosition="relative"
-          lineHeight="1px"
-          lineWidth="unset"
-          lineTop="unset"
-          lineRight="unset"
-          lineBottom="unset"
-          lineLeft="unset"
-          lineFlex="1"
-          buttonMenuBorder7="unset"
-          buttonMenuPadding7="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor7="unset"
-          buttonMenuMarginLeft7="unset"
-          buttonMenuFlex7="1"
-          buttonMenuWidth7="unset"
-          buttonMenuAlignSelf7="stretch"
-          glowHeight9="100%"
-          buttonMenuBorder8="unset"
-          buttonMenuPadding8="0px var(--padding-5xl) 0px 0px"
-          buttonMenuBackgroundColor8="unset"
-          buttonMenuMarginLeft8="unset"
-          buttonMenuMarginBottom1="-1px"
-          buttonMenuHeight="29px"
-          buttonMenuWidth8="unset"
-          buttonMenuAlignSelf8="stretch"
-          glowHeight10="100%"
-          onLogoFooterContainerClick={onLogoFooterContainerClick}
-          onButtonMenuClick={onButtonMenuContainerClick}
-          onButtonMenu1Click={onButtonMenuContainer1Click}
-          onButtonMenu2Click={onButtonMenuClick}
-          onButtonMenu3Click={onButtonMenuContainer2Click}
-        />
-        <h1 className={styles.changeHyperParameters}>
-          Change Hyper-Parameters
-        </h1>
-        <ParameterBox3 />
-        <div className={styles.choice}>
-          <div className={styles.choiceChild} />
-          <div className={styles.choice1}>DQN</div>
-        </div>
-        <div className={styles.choice2}>
-          <div className={styles.choiceItem} />
-          <div className={styles.choice3}>PPO</div>
-        </div>
-        <ParameterBox2 />
-        <ParameterBox1 />
-        <ParameterBox />
-        <section className={styles.instructionTextWrapper}>
-          <div className={styles.instructionText}>
-            <h3 className={styles.seeHowIt}>See how it trains!</h3>
+      <div className={styles.parametersPage}>
+        <div className={styles.sidebar}>
+          <div className={styles.logoFooterParent}>
+            <div
+              className={styles.logoFooter}
+              onClick={onLogoFooterContainerClick}
+            >
+              <img className={styles.glowIcon} alt="" src="/glow.svg" />
+              <div className={styles.logoDesigncode}>
+                <img
+                  className={styles.appBlocksIcon}
+                  alt=""
+                  src="/app-blocks.svg"
+                />
+              </div>
+              <b className={styles.company}> Hackathon</b>
+            </div>
+            <div className={styles.sideMenu}>
+              <div className={styles.glow} />
+              <div className={styles.outline} />
+              <button className={styles.buttonMenu} onClick={onButtonMenuClick}>
+                <img
+                  className={styles.mediaCirclesPlayCircles}
+                  alt=""
+                  src="/media-circles-play-circles.svg"
+                />
+                <div className={styles.account}>Home</div>
+                <img
+                  className={styles.mediaCirclesPlayCircles1}
+                  alt=""
+                  src="/media-circles-play-circles.svg"
+                />
+                <div className={styles.glow1} />
+              </button>
+              <button
+                className={styles.buttonMenu1}
+                onClick={onButtonMenu1Click}
+              >
+                <img
+                  className={styles.handPointFinger}
+                  alt=""
+                  src="/hand-point-finger.svg"
+                />
+                <div className={styles.account1}>Choose Eviroment</div>
+                <img
+                  className={styles.handPointFinger1}
+                  alt=""
+                  src="/hand-point-finger.svg"
+                />
+                <div className={styles.glow2} />
+              </button>
+              <button
+                className={styles.buttonMenu2}
+                onClick={onButtonMenu2Click}
+              >
+                <img
+                  className={styles.menuSquareIcon}
+                  alt=""
+                  src="/menu-square.svg"
+                />
+                <div className={styles.account2}>Change Hyper-Parameters</div>
+                <img
+                  className={styles.menuSquareIcon1}
+                  alt=""
+                  src="/menu-square.svg"
+                />
+                <div className={styles.glow3} />
+              </button>
+              <button
+                className={styles.buttonMenu3}
+                onClick={onButtonMenu3Click}
+              >
+                <img className={styles.imageIcon} alt="" src="/image.svg" />
+                <div className={styles.account3}>Results</div>
+                <img className={styles.imageIcon1} alt="" src="/image.svg" />
+                <div className={styles.glow4} />
+              </button>
+            </div>
           </div>
-        </section>
-      </main>
+          <div className={styles.sideMenu1}>
+            <div className={styles.glow5} />
+            <div className={styles.outline1} />
+            <div className={styles.divider}>
+              <div className={styles.line} />
+            </div>
+            <button className={styles.buttonMenu4}>
+              <img
+                className={styles.settings2Icon}
+                alt=""
+                src="/settings-2.svg"
+              />
+              <div className={styles.account4}>Settings</div>
+              <img
+                className={styles.settings2Icon1}
+                alt=""
+                src="/settings-2.svg"
+              />
+              <div className={styles.glow6} />
+            </button>
+            <button className={styles.buttonMenu5}>
+              <img className={styles.helpIcon} alt="" src="/help.svg" />
+              <div className={styles.account5}>Help center</div>
+              <img className={styles.helpIcon1} alt="" src="/help.svg" />
+              <div className={styles.glow7} />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className={styles.questions}>
+        <div className={styles.questionsInner}>
+          <button
+            className={styles.seeHowItTrainsWrapper}
+            onClick={onFrameButtonClick}
+          >
+            <b className={styles.seeHowIt}>See how it trains!</b>
+          </button>
+        </div>
+        <div className={styles.totalFrames}>
+          <div className={styles.frame} />
+          <input
+            className={styles.typeInResponse}
+            placeholder="Type your value here"
+            type="text"
+          />
+          <div className={styles.content}>
+            <div className={styles.title}>
+              <div className={styles.parameter}>Frames Per Batch</div>
+            </div>
+            <div className={styles.divider1}>
+              <div className={styles.line1} />
+            </div>
+            <div className={styles.descLoremIpsum}>
+              Frames per batch determines how many observations from the
+              environment are grouped together for training a neural network at
+              one time. It impacts both the efficiency and stability of
+              learning, as it allows the network to process multiple pieces of
+              data simultaneously, improving learning speed while preventing
+              instability.
+            </div>
+          </div>
+        </div>
+        <div className={styles.framesPerBatch}>
+          <div className={styles.frame1} />
+          <input
+            className={styles.typeInResponse1}
+            placeholder="Type your value here"
+            type="text"
+          />
+          <div className={styles.content1}>
+            <div className={styles.title1}>
+              <div className={styles.parameter1}>Total Frames</div>
+            </div>
+            <div className={styles.divider2}>
+              <div className={styles.line2} />
+            </div>
+            <div className={styles.descLoremIpsum1}>
+              Total frames refers to the total number of observations or frames
+              collected from the environment during the entire training process
+              of a reinforcement learning algorithm. It represents the amount of
+              experience the algorithm accumulates over time, influencing its
+              learning capabilities and eventual performance.
+            </div>
+          </div>
+        </div>
+        <div className={styles.learningRate}>
+          <div className={styles.frame2} />
+          <input
+            className={styles.typeInResponse2}
+            placeholder="Type your value here"
+            type="text"
+          />
+          <div className={styles.content2}>
+            <div className={styles.title2}>
+              <div className={styles.parameter2}>Learning Rate</div>
+            </div>
+            <div className={styles.divider3}>
+              <div className={styles.line3} />
+            </div>
+            <div className={styles.descLoremIpsumContainer}>
+              <p className={styles.theLearningRate}>
+                The learning rate in machine learning determines the step size
+                at which a model adjusts its parameters during training,
+                affecting the speed and stability of convergence. It's a crucial
+                hyper-parameter that balances the trade-off between rapid
+                learning and overshooting optimal solutions.
+              </p>
+              <p className={styles.blankLine}>&nbsp;</p>
+              <p className={styles.recommendedRangeIs}>
+                Recommended range is between 0.00001 and 0.1
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.storage}>
+          <div className={styles.parameterbox1}>
+            <div className={styles.frame3} />
+            <div className={styles.typeInResponse3}>
+              <div className={styles.typeInResponseChild} />
+              <div className={styles.typeYourAnswer}>Type your value here</div>
+            </div>
+            <div className={styles.content3}>
+              <div className={styles.title3}>
+                <div className={styles.parameter3}>Storage</div>
+              </div>
+              <div className={styles.divider4}>
+                <div className={styles.line4} />
+              </div>
+              <div className={styles.descLoremIpsumContainer1}>
+                <p
+                  className={styles.circularStorageStructures}
+                >{`Circular storage structures, such as circular buffers, optimize memory usage by reusing space efficiently, while deques (double-ended queues) offer versatility with fast insertion and deletion operations at both ends, making them suitable for a wide range of dynamic data storage needs. `}</p>
+                <p className={styles.blankLine1}>&nbsp;</p>
+                <p className={styles.choicesAreCircular}>
+                  Choices are Circular Buffer or Deque Memory
+                </p>
+              </div>
+            </div>
+          </div>
+          <button className={styles.choice}>
+            <div className={styles.choiceChild} />
+            <div className={styles.choice1}>Deque Memory</div>
+          </button>
+          <button className={styles.choice2}>
+            <div className={styles.choiceItem} />
+            <div className={styles.choice3}>Circular Buffer</div>
+          </button>
+        </div>
+        <div className={styles.activationFunctions}>
+          <div className={styles.frame4} />
+          <div className={styles.typeInResponse4}>
+            <div className={styles.typeInResponseItem} />
+            <div className={styles.typeYourAnswer1}>Type your value here</div>
+          </div>
+          <div className={styles.content4}>
+            <div className={styles.title4}>
+              <div className={styles.parameter4}>Activation Functions</div>
+            </div>
+            <div className={styles.divider5}>
+              <div className={styles.line5} />
+            </div>
+            <div className={styles.descLoremIpsumContainer2}>
+              <p className={styles.activationFunctionsIntroduce}>
+                {`Activation functions introduce non-linearity to neural networks. They enable neural networks to model complex relationships and capture nonlinear patterns within data, enhancing the network's ability to learn and make predictions. Find a comprehensive list `}
+                <a
+                  className={styles.here}
+                  href="https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity"
+                  target="_blank"
+                >
+                  <span className={styles.here1}>here</span>
+                </a>
+                . You need the umber of activation functions to be the number of
+                layers plus one.
+              </p>
+              <p className={styles.exampleNnreluNnrelu}>
+                Example: [nn.ReLU, nn.ReLU, nn.SiLU, nn.Sigmoid]
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.nueronsPerLayer}>
+          <div className={styles.frame5} />
+          <input
+            className={styles.typeInResponse5}
+            placeholder="Type your value here"
+            type="text"
+          />
+          <div className={styles.content5}>
+            <div className={styles.title5}>
+              <div className={styles.parameter5}>Neurons Per Layer</div>
+            </div>
+            <div className={styles.divider6}>
+              <div className={styles.line6} />
+            </div>
+            <div
+              className={styles.descLoremIpsum2}
+            >{`Typically, smaller networks with fewer neurons per layer are preferred to reduce computational overhead. As the complexity of the task grows, larger networks with more neurons per layer may be necessary to better represent the structure of the problem. You can input any number of neurons and layers. An example of two layers of 128 and a final layer of 64 would look like: [128, 128, 64] `}</div>
+          </div>
+        </div>
+        <div className={styles.ppqVsDqn}>
+          <div className={styles.parameterbox11}>
+            <div className={styles.frame6} />
+            <div className={styles.typeInResponse6}>
+              <div className={styles.typeInResponseInner} />
+              <div className={styles.typeYourAnswer2}>Type your value here</div>
+            </div>
+            <div className={styles.content6}>
+              <div className={styles.title6}>
+                <div className={styles.parameter6}>PPQ vs DQN</div>
+              </div>
+              <div className={styles.divider7}>
+                <div className={styles.line7} />
+              </div>
+              <div className={styles.descLoremIpsum3}>
+                PPO and DQN are reinforcement learning algorithms tailored for
+                different types of environments. PPO is well-suited for
+                continuous action spaces, prioritizing stability and ease of
+                implementation, making it ideal for tasks like robotic control.
+                DQN, on the other hand, excels in discrete action spaces, such
+                as video games, by learning the value function to estimate
+                expected rewards for actions in specific states.
+              </div>
+            </div>
+          </div>
+          <button className={styles.choice4}>
+            <div className={styles.choiceInner} />
+            <div className={styles.choice5}>DQN</div>
+          </button>
+          <button className={styles.choice6}>
+            <div className={styles.rectangleDiv} />
+            <div className={styles.choice7}>PPO</div>
+          </button>
+        </div>
+      </div>
+      <div className={styles.changeHyperParameters}>
+        Change Hyper-Parameters
+      </div>
     </div>
   );
 };
