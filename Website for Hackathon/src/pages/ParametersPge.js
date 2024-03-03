@@ -36,7 +36,7 @@ const ParametersPge = () => {
   const [inputValue, setInputValue] = useState("");
 
   const submitToApi = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     
     fetch(`http://127.0.0.1:5000/api?data=${inputValue}`)
     .then(res => res.json())
@@ -181,9 +181,9 @@ const ParametersPge = () => {
           <form onSubmit={submitToApi}>
             <input
               className={styles.typeInResponse}
-              placeholder="Type your value here"
+              placeholder="0 Type your value here"
               type="text"
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={(e) => setInputValue([0, e.target.value])}
             />
           </form>
           <div className={styles.content}>
@@ -208,9 +208,9 @@ const ParametersPge = () => {
           <form onSubmit={submitToApi}>
             <input
               className={styles.typeInResponse}
-              placeholder="Type your value here"
+              placeholder="1 Type your value here"
               type="text"
-              onChange={(e) => setInputValue([e.target.value]) }
+              onChange={(e) => setInputValue([1, e.target.value]) }
             />
           </form>
           <div className={styles.content}>
@@ -234,9 +234,9 @@ const ParametersPge = () => {
           <form onSubmit={submitToApi}>
             <input
               className={styles.typeInResponse}
-              placeholder="Type your value here"
+              placeholder="2 Type your value here"
               type="text"
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={(e) => setInputValue([2, e.target.value])}
             />
           </form>
           <div className={styles.content2}>
@@ -286,11 +286,17 @@ const ParametersPge = () => {
               </div>
             </div>
           </div>
-          <button className={styles.choice}>
+          <button className={styles.choice} onClick={(e) => {
+              setInputValue([6, 1]);
+              submitToApi([e]);
+            }}>
             <div className={styles.choiceChild} />
             <div className={styles.choice1}>Deque Memory</div>
           </button>
-          <button className={styles.choice2}>
+          <button className={styles.choice2} onClick={(e) => {
+              setInputValue([6, 0]);
+              submitToApi(e);
+            }}>
             <div className={styles.choiceChild} />
             <div className={styles.choice1}>Circular Buffer</div>
           </button>
@@ -300,9 +306,9 @@ const ParametersPge = () => {
           <form onSubmit={submitToApi}>
             <input
               className={styles.typeInResponse}
-              placeholder="Type your value here"
+              placeholder="3 Type your value here"
               type="text"
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={(e) => setInputValue([3, e.target.value])}
             />
           </form>
           <div className={styles.content2}>
@@ -336,9 +342,9 @@ const ParametersPge = () => {
           <form onSubmit={submitToApi}>
             <input
               className={styles.typeInResponse}
-              placeholder="Type your value here"
+              placeholder="4 Type your value here"
               type="text"
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={(e) => setInputValue([4, e.target.value])}
             />
           </form>
           <div className={styles.content2}>
@@ -379,14 +385,14 @@ const ParametersPge = () => {
             </div>
           </div>
           <button className={styles.choice} onClick={(e) => {
-              setInputValue(1);
-              submitToApi(e);
+              setInputValue([5, 1]);
+              submitToApi([e]);
             }}>
             <div className={styles.choiceChild} />
             <div className={styles.choice1}>DQN</div>
           </button>
           <button className={styles.choice2} onClick={(e) => {
-              setInputValue([8,9]);
+              setInputValue([5, 0]);
               submitToApi(e);
             }}>
             <div className={styles.choiceChild} />
