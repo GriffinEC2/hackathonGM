@@ -1,0 +1,55 @@
+.userIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: none;
+  z-index: 0;
+}
+.account,
+.userIcon,
+.userIcon1 {
+  position: relative;
+  overflow: hidden;
+}
+.account {
+  flex: 1;
+  line-height: 20px;
+  font-weight: 500;
+  display: -webkit-inline-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  z-index: 1;
+}
+.userIcon1 {
+  width: var(--button-icon-size1);
+  height: var(--button-icon-size1);
+  flex-shrink: 0;
+  z-index: 2;
+}
+.glow {
+  width: 3px;
+  position: absolute;
+  margin: 0 !important;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  filter: blur(10px);
+  z-index: 3;
+}
+.modelightStatenormalSize {
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--button-vertical-padding) var(--button-horizontal-padding);
+  box-sizing: border-box;
+  position: relative;
+  gap: 0 12px;
+  text-align: left;
+  font-size: var(--footnote-medium-size);
+  color: var(--foreground-primary);
+  font-family: var(--footnote-medium);
+}

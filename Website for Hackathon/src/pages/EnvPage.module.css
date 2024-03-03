@@ -1,0 +1,91 @@
+.chooseAnEnvironment {
+  margin: 0;
+  align-self: stretch;
+  height: 63px;
+  position: relative;
+  font-size: inherit;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-family: inherit;
+  display: inline-block;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.frameChoiceEnv {
+  width: 868px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.fRAME,
+.frameEnvChooser {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 100%;
+}
+.frameEnvChooser {
+  margin: 0 !important;
+  position: absolute;
+  top: 0;
+  right: 73px;
+  overflow: hidden;
+  align-items: flex-end;
+  padding: 0 0 0 6px;
+  box-sizing: border-box;
+  min-height: 106px;
+  z-index: 1;
+}
+.fRAME {
+  margin-bottom: -535px;
+  align-self: stretch;
+  height: 2375px;
+  align-items: center;
+  position: relative;
+  text-align: left;
+  font-size: var(--font-size-29xl);
+  color: var(--foreground-primary);
+  font-family: var(--footnote-medium);
+}
+.envPage,
+.pageFrame {
+  display: flex;
+  box-sizing: border-box;
+}
+.pageFrame {
+  height: 1840px;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  max-width: 100%;
+}
+.envPage {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px 0 0;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 1050px) {
+  .chooseAnEnvironment {
+    font-size: var(--font-size-19xl);
+  }
+  .fRAME,
+  .pageFrame {
+    height: auto;
+  }
+}
+@media screen and (max-width: 450px) {
+  .chooseAnEnvironment {
+    font-size: var(--font-size-10xl);
+  }
+}

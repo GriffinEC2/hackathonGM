@@ -1,0 +1,50 @@
+.appBlocksIcon,
+.glowIcon {
+  position: absolute;
+  width: 25.2px;
+  overflow: hidden;
+}
+.glowIcon {
+  margin: 0 !important;
+  top: 9.4px;
+  left: 10.5px;
+  max-width: 100%;
+  height: 24.5px;
+  display: none;
+  z-index: 0;
+}
+.appBlocksIcon {
+  height: 54.66%;
+  top: 22.78%;
+  bottom: 22.56%;
+  left: calc(50% - 12.7px);
+  max-height: 100%;
+}
+.logoDesigncode {
+  flex: 1;
+  position: relative;
+  border-radius: 31.44px;
+  background-color: var(--container-background-secondary);
+  height: 46.1px;
+  z-index: 1;
+}
+.company {
+  flex: 1;
+  position: relative;
+  letter-spacing: -0.05em;
+  z-index: 2;
+}
+.logoFooter {
+  width: 241.1px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  gap: 0 4.19px;
+  cursor: pointer;
+  text-align: right;
+  font-size: var(--font-size-lg-9);
+  color: var(--foreground-primary);
+  font-family: var(--footnote-medium);
+}
