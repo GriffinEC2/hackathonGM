@@ -8,10 +8,26 @@ const Ghdhretxc = () => {
     navigate("/parameters-pge");
   }, [navigate]);
 
+  const [accuracy, setAccuracy] = useState(2)
+  const [inputValue, setInputValue] = useState("");
+
+  const submitToApi = (e) => {
+    // e.preventDefault();
+    
+    fetch(`http://127.0.0.1:5000/api?data=${inputValue}`)
+    .then(res => res.json())
+    .then(data => {
+      setAccuracy(data.accuracy);
+    })
+  }
+
   return (
     <div className={styles.ghdhretxc}>
       <div className={styles.mything}>
-        <button className={styles.rectImage} />
+        <button className={styles.rectImage} onClick={(e) => {
+              setInputValue([7, 0]);
+              submitToApi([e]);
+            }} />
         <img
           className={styles.img38851Icon}
           loading="lazy"
@@ -28,7 +44,10 @@ const Ghdhretxc = () => {
         </div>
       </div>
       <div className={styles.rectangleParent}>
-        <button className={styles.instanceChild} />
+        <button className={styles.instanceChild} onClick={(e) => {
+              setInputValue([7, 1]);
+              submitToApi([e]);
+            }}/>
         <img
           className={styles.img38851Icon1}
           loading="lazy"
@@ -45,7 +64,10 @@ const Ghdhretxc = () => {
         </div>
       </div>
       <div className={styles.mything1}>
-        <button className={styles.rectEnvInfo} />
+        <button className={styles.rectEnvInfo} onClick={(e) => {
+              setInputValue([7, 2]);
+              submitToApi([e]);
+            }}/>
         <img
           className={styles.img38851Icon2}
           loading="lazy"
@@ -68,7 +90,10 @@ const Ghdhretxc = () => {
         </div>
       </div>
       <div className={styles.mything2}>
-        <button className={styles.mythingChild} />
+        <button className={styles.mythingChild} onClick={(e) => {
+              setInputValue([7, 3]);
+              submitToApi([e]);
+            }}/>
         <img
           className={styles.img38851Icon3}
           loading="lazy"
